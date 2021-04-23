@@ -1,0 +1,77 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Pizzeria Hamnen</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" />
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Mansalva&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Alatsi&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<body style=" background: url(https://wallpaperaccess.com/full/424516.jpg) no-repeat center center fixed; background-size: cover;">
+    <div style="position: fixed; top: 0; bottom: 0; left: 0; right: 0; z-index: -1; background: rgba(0, 0, 0, 0.3);"></div>
+    <header>
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark box-shadow mb-3">
+            <div class="container">
+                <a style=" padding: 0 20px;" class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">
+                    <img style="width: 100px; height: auto;" alt="error" src="@Url.Content("https://mustafah99.github.io/Placeholder-Pizzeria---Mobile-Responsive-Webpage/images/Pizza-logo-design-template-Vector-PNG.png")" />
+                </a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-end">
+                    <ul style="font-family: 'Alatsi', sans-serif; text-transform: uppercase; text-shadow: 2px 2px 2px #000; font-weight: bold;" class="navbar-nav flex-grow-1 ml-auto mr-1 justify-content-end">
+                        <li style="padding: 0 20px;" class="nav-item">
+                            <a class="nav-link text-light" asp-area="" asp-controller="Home" asp-action="Index">Hem</a>
+                        </li>
+                        <li style="padding: 0 20px;" class="nav-item">
+                            <a class="nav-link text-light" asp-area="" asp-controller="Pizzas" asp-action="Index">Meny</a>
+                        </li>
+                        <li style="padding: 0 20px;" class="nav-item">
+                            <a class="nav-link text-light" asp-area="" asp-controller="Home" asp-action="HittaHit">Hitta Hit</a>
+                        </li>
+                        <li style="padding: 0 20px;" class="nav-item">
+                            <a class="nav-link text-light" asp-area="" asp-controller="Home" asp-action="KontaktTid">Kontakt & Öppettider</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <div class="container">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+
+    <footer style="background: linear-gradient(45deg, #490303, #a50707, #5c0c0c)" class="footer text-muted" )>
+        <div style="position: relative; display: flex; font-family: 'Mansalva', cursive; color: white;" class="container">
+            &copy; 2021 - Pizzeria Hamnen ASP.NET MVC Version - Animimo Design
+
+            <ul style="position: absolute; right: 0; display: flex; list-style: none;">
+                <li style="padding: 0 20px;" class="nav-item">
+                    <a style="color: white;" href="https://www.facebook.com/cleopatrahelsingborg" class="fa fa-facebook" target="_blank"></a>
+                </li>
+                <li style="padding: 0 20px;" class="nav-item">
+                    <a style="color: white;" href="#" class="fa fa-twitter"></a>
+                </li>
+                <li style="padding: 0 20px;" class="nav-item">
+                    <a style="color: white;" href="#" class="fa fa-snapchat"></a>
+                </li>
+                <li style="padding: 0 20px;" class="nav-item">
+                    <a style="color: white;" href="#" class="fa fa-instagram"></a>
+                </li>
+            </ul>
+        </div>
+    </footer>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

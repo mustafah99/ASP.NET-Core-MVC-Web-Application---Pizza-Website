@@ -1,0 +1,37 @@
+﻿@model Grupparbete.Models.Pizzas
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1 style="font-family: 'Alatsi', sans-serif; text-transform: uppercase; font-weight: bold; color: white; text-shadow: 0px 0px 12px #000;">@Html.DisplayFor(model => model.PizzaName)</h1>
+
+<div style="font-family: 'Alatsi', sans-serif; text-transform: uppercase; font-weight: bold; color: white; text-shadow: 0px 0px 12px #000;">
+    <h4>Pizzas</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            Pizza
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.PizzaName)
+        </dd>
+        <dt class = "col-sm-2">
+            Storlek
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.PizzaSizes)
+        </dd>
+        <dt class = "col-sm-2">
+            Pris
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Price)
+        </dd>
+    </dl>
+</div>
+<div style="font-family: 'Alatsi', sans-serif; text-transform: uppercase; font-weight: bold; color: white; text-shadow: 0px 0px 12px #000;">
+    <a style="color: white;" asp-action="Edit" asp-route-id="@Model.Id">Redigera</a> |
+    <a style="color: white;" asp-action="Delete" asp-route-id="@Model.Id">Radera</a> |
+    <a style="color: white;" asp-action="Index">Tillbaka till Listan</a>
+</div>

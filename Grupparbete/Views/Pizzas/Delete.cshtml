@@ -1,0 +1,39 @@
+﻿@model Grupparbete.Models.Pizzas
+
+@{
+    ViewData["Title"] = "Radera Pizza";
+}
+
+<h1 style="font-family: 'Alatsi', sans-serif; text-transform: uppercase; font-weight: bold; color: white; text-shadow: 0px 0px 12px #000;">@ViewData["Title"]</h1>
+
+<h3 style="font-family: 'Alatsi', sans-serif; text-transform: uppercase; font-weight: bold; color: white; text-shadow: 0px 0px 12px #000;">Är du säker på att du vill radera den här pizzan från menyn?</h3>
+<div style="font-family: 'Alatsi', sans-serif; text-transform: uppercase; font-weight: bold; color: white; text-shadow: 0px 0px 12px #000;">
+    <h4>Pizzas</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            Pizza Name 
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.PizzaName)
+        </dd>
+        <dt class = "col-sm-2">
+            Pizza Sizes
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.PizzaSizes)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Price)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Price)
+        </dd>
+    </dl>
+    
+    <form style="font-family: 'Alatsi', sans-serif; text-transform: uppercase; font-weight: bold; color: white; text-shadow: 0px 0px 12px #000;" asp-action="Delete">
+        <input type="hidden" asp-for="Id" />
+        <input style="text-decoration: none; text-shadow: 0px 0px 12px #000; color: white; -webkit-box-shadow: 0px 0px 12px #000; box-shadow: 0px 0px 12px #000; border: none; border-radius: 5px; background: #f00c00; color: white; height: 40px; width: 130px; text-transform: uppercase; font-family: Alatsi", sans-serif; font-weight: 900; cursor: pointer;" type="submit" value="Delete" class="btn btn-danger" /> |
+        <a style="color: white;" asp-action="Index">Tillbaka till Listan</a>
+    </form>
+</div>
