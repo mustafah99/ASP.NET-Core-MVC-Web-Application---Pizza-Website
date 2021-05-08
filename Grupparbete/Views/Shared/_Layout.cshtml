@@ -1,4 +1,8 @@
-﻿<!DOCTYPE html>
+﻿@using Microsoft.AspNetCore.Identity
+@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> UserManager
+
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -39,6 +43,11 @@
                             <a class="nav-link text-light" asp-area="" asp-controller="Home" asp-action="KontaktTid">Kontakt & Öppettider</a>
                         </li>
                     </ul>
+                    @if (SignInManager.IsSignedIn(User))
+                    {
+                        /* https://localhost:44321/Identity/Account/Login */
+                        <partial name="_LoginPartial" />
+                    }
                 </div>
             </div>
         </nav>

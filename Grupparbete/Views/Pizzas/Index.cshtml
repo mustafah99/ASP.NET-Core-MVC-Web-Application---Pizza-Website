@@ -1,4 +1,7 @@
 ﻿@model IEnumerable<Grupparbete.Models.Pizzas>
+@using Microsoft.AspNetCore.Identity
+@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> UserManager
 
 @{
     ViewData["Title"] = "Vår Meny";
@@ -12,9 +15,12 @@
     <h2>Se våra underbara pizzor här.</h2>
 </div>
 
-<p style="font-family: 'Alatsi', sans-serif; text-transform: uppercase; font-weight: bold; color: white; text-shadow: 0px 0px 12px #000;">
-    <a style="color: white;" asp-action="Create">Lägg Till Ny Pizza</a>
-</p>
+@if (SignInManager.IsSignedIn(User))
+{
+    <p style="font-family: 'Alatsi', sans-serif; text-transform: uppercase; font-weight: bold; color: white; text-shadow: 0px 0px 12px #000;">
+        <a style="color: white;" asp-action="Create">Lägg Till Ny Pizza</a>
+    </p>
+}
 
 <table style="border: 2px solid white; font-family: 'Alatsi', sans-serif; text-transform: uppercase; font-weight: bold; color: white; text-shadow: 0px 0px 12px #000;" class="table">
     <thead style="border: 2px solid white;">
@@ -30,21 +36,46 @@
             </th>
         </tr>
     </thead>
-    <tbody style="border: 2px solid white;">
-        @foreach (var item in Model)
-        {
-            <tr style="border: 2px solid white;">
-                <td style="border: 2px solid white;">
-                    <a style="color: white;" asp-action="Details" asp-route-id="@item.Id">@Html.DisplayFor(modelItem => item.PizzaName)</a>
-                    
-                </td>
-                <td style="border: 2px solid white;">
-                    @Html.DisplayFor(modelItem => item.PizzaSizes)
-                </td>
-                <td style="border: 2px solid white;">
-                    @Html.DisplayFor(modelItem => item.Price)
-                </td>
-            </tr>
-        }
-    </tbody>
+
+    @if (SignInManager.IsSignedIn(User))
+    {
+        <tbody style="border: 2px solid white;">
+            @foreach (var item in Model)
+            {
+                <tr style="border: 2px solid white;">
+                    <td style="border: 2px solid white;">
+                        <a style="color: white;" asp-action="Details" asp-route-id="@item.Id">@Html.DisplayFor(modelItem => item.PizzaName)</a>
+
+                    </td>
+                    <td style="border: 2px solid white;">
+                        @Html.DisplayFor(modelItem => item.PizzaSizes)
+                    </td>
+                    <td style="border: 2px solid white;">
+                        @Html.DisplayFor(modelItem => item.Price)
+                    </td>
+                </tr>
+            }
+        </tbody>
+    }
+    else
+    {
+        <tbody style="border: 2px solid white;">
+            @foreach (var item in Model)
+            {
+                <tr style="border: 2px solid white;">
+                    <td style="border: 2px solid white;">
+                        <a style="color: white; text-decoration: none; cursor: default;" asp-route-id="@item.Id">@Html.DisplayFor(modelItem => item.PizzaName)</a>
+
+                    </td>
+                    <td style="border: 2px solid white;">
+                        @Html.DisplayFor(modelItem => item.PizzaSizes)
+                    </td>
+                    <td style="border: 2px solid white;">
+                        @Html.DisplayFor(modelItem => item.Price)
+                    </td>
+                </tr>
+            }
+        </tbody>
+    }
+
 </table>

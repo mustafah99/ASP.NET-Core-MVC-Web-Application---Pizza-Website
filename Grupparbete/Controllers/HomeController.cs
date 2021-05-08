@@ -25,7 +25,7 @@ namespace Grupparbete.Controllers
 
         public IActionResult Meny()
         {
-            return View("~/Views/Pizzas/Index.cshtml");
+            return View();
         }
 
         public IActionResult HittaHit()

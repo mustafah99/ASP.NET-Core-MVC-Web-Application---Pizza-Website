@@ -1,0 +1,57 @@
+﻿@page
+@model TwoFactorAuthenticationModel
+@{
+    ViewData["Title"] = "Two-factor authentication (2FA)";
+    ViewData["ActivePage"] = ManageNavPages.TwoFactorAuthentication;
+}
+
+<partial name="_StatusMessage" for="StatusMessage" />
+<h4 style="font-family: 'Alatsi', sans-serif; text-transform: uppercase; font-weight: bold; color: white; text-shadow: 0px 0px 12px #000;">@ViewData["Title"]</h4>
+@if (Model.Is2faEnabled)
+{
+    if (Model.RecoveryCodesLeft == 0)
+    {
+        <div style="font-family: 'Alatsi', sans-serif; text-transform: uppercase; font-weight: bold; color: white; text-shadow: 0px 0px 12px #000;" class="alert alert-danger">
+            <strong>You have no recovery codes left.</strong>
+            <p>You must <a asp-page="./GenerateRecoveryCodes">generate a new set of recovery codes</a> before you can log in with a recovery code.</p>
+        </div>
+    }
+    else if (Model.RecoveryCodesLeft == 1)
+    {
+        <div style="font-family: 'Alatsi', sans-serif; text-transform: uppercase; font-weight: bold; color: white; text-shadow: 0px 0px 12px #000;" class="alert alert-danger">
+            <strong>You have 1 recovery code left.</strong>
+            <p>You can <a asp-page="./GenerateRecoveryCodes">generate a new set of recovery codes</a>.</p>
+        </div>
+    }
+    else if (Model.RecoveryCodesLeft <= 3)
+    {
+        <div style="font-family: 'Alatsi', sans-serif; text-transform: uppercase; font-weight: bold; color: white; text-shadow: 0px 0px 12px #000;" class="alert alert-warning">
+            <strong>You have @Model.RecoveryCodesLeft recovery codes left.</strong>
+            <p>You should <a asp-page="./GenerateRecoveryCodes">generate a new set of recovery codes</a>.</p>
+        </div>
+    }
+
+    if (Model.IsMachineRemembered)
+    {
+        <form style="display: inline-block; font-family: 'Alatsi', sans-serif; text-transform: uppercase; font-weight: bold; color: white; text-shadow: 0px 0px 12px #000;" method="post">
+            <button style="text-decoration: none; text-shadow: 0px 0px 12px #000; color: white; -webkit-box-shadow: 0px 0px 12px #000; box-shadow: 0px 0px 12px #000; border: none; border-radius: 5px; background: #f00c00; color: white; text-transform: uppercase; font-family: Alatsi", sans-serif; font-weight: 900; cursor: pointer;" type="submit" class="btn btn-default">Forget this browser</button>
+        </form>
+    }
+    <a style="text-decoration: none; text-shadow: 0px 0px 12px #000; color: white; -webkit-box-shadow: 0px 0px 12px #000; box-shadow: 0px 0px 12px #000; border: none; border-radius: 5px; background: #f00c00; color: white; text-transform: uppercase; font-family: Alatsi", sans-serif; font-weight: 900; cursor: pointer;" asp-page="./Disable2fa" class="btn btn-default">Disable 2FA</a>
+    <a style="text-decoration: none; text-shadow: 0px 0px 12px #000; color: white; -webkit-box-shadow: 0px 0px 12px #000; box-shadow: 0px 0px 12px #000; border: none; border-radius: 5px; background: #f00c00; color: white; text-transform: uppercase; font-family: Alatsi", sans-serif; font-weight: 900; cursor: pointer;" asp-page="./GenerateRecoveryCodes" class="btn btn-default">Reset recovery codes</a>
+}
+
+<h5 style="font-family: 'Alatsi', sans-serif; text-transform: uppercase; font-weight: bold; color: white; text-shadow: 0px 0px 12px #000;">Authenticator app</h5>
+@if (!Model.HasAuthenticator)
+{
+    <a style="text-decoration: none; text-shadow: 0px 0px 12px #000; color: white; -webkit-box-shadow: 0px 0px 12px #000; box-shadow: 0px 0px 12px #000; border: none; border-radius: 5px; background: #f00c00; color: white; text-transform: uppercase; font-family: Alatsi", sans-serif; font-weight: 900; cursor: pointer;" id="enable-authenticator" asp-page="./EnableAuthenticator" class="btn btn-default">Add authenticator app</a>
+}
+else
+{
+    <a style="text-decoration: none; text-shadow: 0px 0px 12px #000; color: white; -webkit-box-shadow: 0px 0px 12px #000; box-shadow: 0px 0px 12px #000; border: none; border-radius: 5px; background: #f00c00; color: white; text-transform: uppercase; font-family: Alatsi", sans-serif; font-weight: 900; cursor: pointer;" id="enable-authenticator" asp-page="./EnableAuthenticator" class="btn btn-default">Setup authenticator app</a>
+    <a style="text-decoration: none; text-shadow: 0px 0px 12px #000; color: white; -webkit-box-shadow: 0px 0px 12px #000; box-shadow: 0px 0px 12px #000; border: none; border-radius: 5px; background: #f00c00; color: white; text-transform: uppercase; font-family: Alatsi", sans-serif; font-weight: 900; cursor: pointer;" id="reset-authenticator" asp-page="./ResetAuthenticator" class="btn btn-default">Reset authenticator app</a>
+}
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
